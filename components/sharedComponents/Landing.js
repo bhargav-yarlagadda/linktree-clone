@@ -43,11 +43,14 @@ const Landing = () => {
               </Link>
             ))}
           </div>
-        <Link href='/' 
-  className="inline-flex h-10 my-3 animate-shimmer items-center justify-center rounded-md border border-blue-600 bg-[linear-gradient(110deg,#1e3a8a,45%,#3b82f6,55%,#1e3a8a)] bg-[length:200%_100%] px-6 font-medium text-white transition-colors focus:outline-none "
->
-Get Started
-        </Link>
+          <div 
+          className='animate-pulse  duration-1000'>
+            <Link href='/'
+              className="inline-flex  h-10 my-3 animate-shimmer items-center justify-center rounded-md border border-blue-600 bg-[linear-gradient(110deg,#1e3a8a,45%,#3b82f6,55%,#1e3a8a)] bg-[length:200%_100%] px-6 font-medium text-white transition-colors focus:outline-none "
+            >
+              Get Started
+            </Link>
+          </div>
         </div>
 
         {/* Video Section */}
@@ -61,25 +64,16 @@ Get Started
             className="w-full h-[80%] md:h-auto animate-fadeInUp duration-500 rounded-md shadow-lg"
           />
         </div>
-   
+
       </div>
 
       {/* Additional Text Below the Video */}
 
     </div>
-    
+
   );
 };
 
 export default Landing;
 
 
-
-        // Button code
-        <button >
-          Shimmer
-        </button>
-  
-        // tailwind.config.js code
-   
-      
