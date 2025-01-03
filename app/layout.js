@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/sharedComponents/Navbar";
+import { ClerkProvider } from "@clerk/nextjs"; 
+import { dark, neobrutalism, shadesOfPurple } from "@clerk/themes";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -22,8 +23,22 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar/>
+        <ClerkProvider
+              appearance={{
+                baseTheme: [,dark,neobrutalism],
+                signUp: {
+                  baseTheme: [shadesOfPurple],
+                  variables: { colorPrimary: 'green' },
+                },
+                signIp: {
+                  baseTheme: [dark],
+                  variables: { colorPrimary: 'green' },
+                },
+              }}
+        >
         {children}
+        </ClerkProvider>
+
       </body>
     </html>
   );
