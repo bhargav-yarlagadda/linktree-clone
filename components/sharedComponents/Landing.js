@@ -6,7 +6,8 @@ import { FaInstagram, FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 const Landing = () => {
   return (
-    <div className="w-[95vw] h-[100vh] md:h-[80vh] bg-white text-black mx-auto rounded-md animate-fadeInUp flex flex-col justify-center items-center px-6 py-8">
+
+    <div className="w-[95vw] h-[100vh] md:h-[80vh] bg-black text-white mx-auto rounded-md animate-fadeInUp flex flex-col justify-center items-center px-6 py-8">
       {/* Flex container to display content and video side by side */}
       <div className="flex flex-col sm:flex-row justify-center items-center w-full gap-8">
         {/* Content Section */}
@@ -23,7 +24,7 @@ const Landing = () => {
 
           {/* Links Section */}
           <div className="grid grid-cols-2 gap-3">
-            {[ 
+            {[
               { name: 'Instagram', icon: <FaInstagram size={24} />, href: '#instagram' },
               { name: 'GitHub', icon: <FaGithub size={24} />, href: '#github' },
               { name: 'LinkedIn', icon: <FaLinkedin size={24} />, href: '#linkedin' },
@@ -32,7 +33,7 @@ const Landing = () => {
               <Link key={index} href={link.href} passHref>
                 <div
                   className="bg-gradient-to-r from-blue-500 w-[120px] flex flex-col items-center justify-center to-purple-500 text-white text-lg font-semibold py-6 px-8 rounded-lg text-center shadow-lg hover:scale-105 transition-all duration-300 transform opacity-0 translate-y-10 animate-fadeInUp"
-                  style={{ animationDelay: `${index * 0.3}s` }}
+                  style={{ animationDelay: `${index * 0.5}s` }}
                 >
                   <div className="mb-4">
                     {link.icon}
@@ -42,10 +43,15 @@ const Landing = () => {
               </Link>
             ))}
           </div>
+        <Link href='/' 
+  className="inline-flex h-10 my-3 animate-shimmer items-center justify-center rounded-md border border-blue-600 bg-[linear-gradient(110deg,#1e3a8a,45%,#3b82f6,55%,#1e3a8a)] bg-[length:200%_100%] px-6 font-medium text-white transition-colors focus:outline-none "
+>
+Get Started
+        </Link>
         </div>
 
         {/* Video Section */}
-        <div className="sm:w-1/2">
+        <div className="hidden sm:block sm:w-1/2">
           <video
             src="/videos/landing.mp4"  // Path to your video in the public folder
             autoPlay
@@ -55,12 +61,25 @@ const Landing = () => {
             className="w-full h-[80%] md:h-auto animate-fadeInUp duration-500 rounded-md shadow-lg"
           />
         </div>
+   
       </div>
 
       {/* Additional Text Below the Video */}
-    
+
     </div>
+    
   );
 };
 
 export default Landing;
+
+
+
+        // Button code
+        <button >
+          Shimmer
+        </button>
+  
+        // tailwind.config.js code
+   
+      

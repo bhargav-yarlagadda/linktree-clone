@@ -8,7 +8,7 @@ const Navbar = () => {
 
     return (
         <div>
-            <div className="flex justify-between animate-slideIn items-center px-8 py-4 bg-white text-gray-800 rounded-t-md rounded-b-xl m-4 border border-gray-200">
+            <div className="flex justify-between animate-slideIn items-center px-8 py-4 bg-black text-gray-800 rounded-t-md rounded-b-xl m-4 border border-gray-200">
                 {/* Left Section */}
 
                 {/* Center Section */}
@@ -20,7 +20,7 @@ const Navbar = () => {
                 <div className="relative flex  gap-1 md:gap-6 text-sm font-medium">
                     {/* Shared Hover Background */}
                     <div
-                        className={`absolute top-0 left-0 h-full w-[90px] bg-black rounded-md transition-all duration-300 ease-in-out ${hoveredIndex === null ? 'opacity-0' : 'opacity-100'
+                        className={`absolute top-0 left-0 h-full w-[90px] bg-white rounded-md transition-all duration-300 ease-in-out ${hoveredIndex === null ? 'opacity-0' : 'opacity-100'
                             }`}
                         style={{
                             transform: `translateX(${hoveredIndex * 100}px)`,
@@ -32,7 +32,7 @@ const Navbar = () => {
                         href="/sign-up"
                         onMouseEnter={() => setHoveredIndex(0)}
                         onMouseLeave={() => setHoveredIndex(null)}
-                        className="relative z-10 px-4 py-2 rounded-md transition duration-300 hover:text-white"
+                        className="relative z-10 px-4 py-2 rounded-md transition text-white duration-300 hover:text-black"
                     >
                         <span>Sign-up</span>
                     </Link>
@@ -42,10 +42,11 @@ const Navbar = () => {
                         href="/login"
                         onMouseEnter={() => setHoveredIndex(1)}
                         onMouseLeave={() => setHoveredIndex(null)}
-                        className="relative z-10 px-4 py-2 rounded-md transition duration-300 hover:text-white"
+                        className="relative z-10 px-4 py-2 rounded-md transition text-white duration-300 hover:text-black"
                     >
                         <span>Sign In</span>
                     </Link>
+
                 </div>
             </div>
         </div>

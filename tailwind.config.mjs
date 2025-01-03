@@ -11,6 +11,7 @@ export default {
         slideIn:'slideInKeyFrame 1s ease-out',
         fadeInUp: 'fadeInUp 1s ease-out forwards',
         spotlight: "spotlight 2s ease .75s 1 forwards",
+        shimmer: 'shimmer 2s linear infinite',
 
 
       },
@@ -33,6 +34,15 @@ export default {
             transform: "translate(-50%,-40%) scale(1)",
           },
         },
+        shimmer: {
+          '0%': {
+            backgroundPosition: '0 0',
+          },
+          '100%': {
+            backgroundPosition: '-200% 0',
+          },
+        },
+
       },
       colors: {
         background: "var(--background)",
