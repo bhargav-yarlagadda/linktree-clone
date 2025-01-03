@@ -1,36 +1,45 @@
 'use client'
-import { useEffect } from "react"
-import { getUserByEmail } from "@/utils"
-import { useUser } from "@clerk/nextjs"
-import { useRouter } from "next/navigation"
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
 
 const Page = () => {
-    const router = useRouter()
-    const { user, isLoaded, isSignedIn } = useUser()
+    const router = useRouter();
+    const { user, isLoaded, isSignedIn } = useUser();
+    const userEmail = user?.primaryEmailAddress;
 
-    const userEmail = user?.primaryEmailAddress
-    if(isLoaded && !isSignedIn){
-        router.push('/')
-    }
     useEffect(() => {
+        if (isLoaded && !isSignedIn) {
+            router.push("/");
+            return;
+        }
+
         const checkUserProfile = async () => {
             if (userEmail) {
-                // Ensure getUserByEmail is awaited and handles async properly
-                const data = await getUserByEmail(userEmail)
+                try {
+                    // Make sure the fetch request matches the static API route
+                    const response = await fetch(`/api/users?email=${userEmail}`);
+                    if (!response.ok) {
+                        throw new Error(`Error: ${response.status} - ${response.statusText}`);
+                    }
 
-                // Assuming `data.err` is the error check. Adjust if necessary.
-                if (data.error) {
-                    router.push('/profile/new-user')  // Use `/` at the start for correct routing
+                    const data = await response.json();
+
+                    if (data.error) {
+                        router.push("/profile/new-user");
+                    }
+                } catch (error) {
+                    console.error("Error fetching user:", error);
                 }
             }
-        }
+        };
 
         if (user) {
-            checkUserProfile()
+            checkUserProfile();
         }
-    }, [user, userEmail, router])
+    }, [user, userEmail, router]);
 
-    return <div>page</div>
-}
+    return <div>page</div>;
+};
 
-export default Page
+export default Page;

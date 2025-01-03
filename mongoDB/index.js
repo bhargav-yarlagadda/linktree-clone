@@ -1,18 +1,19 @@
-// lib/mongo.js
-import { MongoClient } from "mongodb";
+import mongoose from "mongoose";
 
-
-const connectToDatabase = async ()=>{
+export const connectToDatabase = async () => {
     const uri = process.env.MONGO_URI;
     if (!uri) {
-    throw new Error("Please define the MONGO_URI environment variable.");
+        throw new Error("Please define the MONGO_URI environment variable.");
     }
-    try{
-        const client = new MongoClient(uri)
-        console.log('connected to dp successfully')
-    await client.connect()
-    }catch(err){
-        console.log('error in connecting to db',err)
+
+    if (mongoose.connection.readyState >= 1) {
+        return; // Already connected, no need to reconnect
     }
-}
-export default connectToDatabase
+
+    try {
+        await mongoose.connect(uri);
+        console.log('Connected to DB successfully');
+    } catch (err) {
+        console.error('Error in connecting to DB', err);
+    }
+};
