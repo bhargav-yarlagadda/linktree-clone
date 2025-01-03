@@ -33,7 +33,7 @@ const Landing = () => {
               <Link key={index} href={link.href} passHref>
                 <div
                   className="bg-gradient-to-r from-blue-500 w-[120px] flex flex-col items-center justify-center to-purple-500 text-white text-lg font-semibold py-6 px-8 rounded-lg text-center shadow-lg hover:scale-105 transition-all duration-300 transform opacity-0 translate-y-10 animate-fadeInUp"
-                  style={{ animationDelay: `${index * 0.5}s` }}
+                  style={{ animationDelay: `${index * 0.3}s` }}
                 >
                   <div className="mb-4">
                     {link.icon}
