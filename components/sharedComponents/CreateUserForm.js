@@ -29,7 +29,11 @@ export default function CreateUserForm() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+    if (formData.username && formData.username.includes(" ")) {
+      setModalMessage("Username cannot contain undescores.");
+      setIsModalOpen(true);
+      return;
+    }
     // Validate username
     if (!formData.username.trim()) {
       setModalMessage("Username cannot be empty.");

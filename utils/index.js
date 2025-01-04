@@ -66,3 +66,65 @@ export async function insertNewUser(newUser) {
     return { status: "failure", error: err.message || "Failed to create user" };
   }
 }
+
+
+export async function updateUserByEmail(email, updatedData) {
+  try {
+    // Connect to the database
+    await connectToDatabase();
+
+    // Find the user by email
+    const user = await User.findOne({ email: email }).lean();
+
+    // Check if the user exists
+    if (!user) {
+      return { status: "failure", message: "User not found" };
+    }
+
+    // Update the user with the new data
+    const updatedUser = await User.findOneAndUpdate(
+      { email: email },
+      { $set: updatedData },
+      { new: true } // Return the updated document
+    );
+
+    // Return success with updated user data
+    return { status: "success", data: updatedUser };
+  } catch (err) {
+    console.error("Error updating user:", err);
+    return { status: "failure", error: err.message || "An error occurred while updating the user" };
+  }
+}
+
+export async function updateLinks(email, links) {
+  try {
+    // Connect to the database
+    await connectToDatabase();
+
+    // Validate input
+    if (!email || !Array.isArray(links)) {
+      throw new Error("Invalid email or links data");
+    }
+
+    // Prepare the update object
+    const updatedData = { links };
+
+    // Update only the links field
+    const updatedUser = await User.findOneAndUpdate(
+      { email: email },
+      { $set: updatedData }, // Updates only the `links` field
+      { new: true } // Returns the updated document
+    );
+
+    // Check if the user was updated
+    if (!updatedUser) {
+      throw new Error("User not found or could not be updated");
+    }
+
+    // Return the updated user
+    return { status: "success", data: updatedUser };
+  } catch (error) {
+    console.error("Error updating links:", error);
+    return { status: "failure", message: error.message || "An error occurred" };
+  }
+}

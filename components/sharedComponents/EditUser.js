@@ -5,10 +5,10 @@ import EditProfile from './EditProfile'
 const EditUser = () => {
   return (
     <div className='w-full h-screen bg-gray-950  grid grid-cols-1 md:grid-cols-2'>
-        <div className='col-span-1  h-full py-5 ps-5'>
+        <div className='col-span-1  h-full py-5 px-5'>
         <EditProfile/>
         </div>
-        <div className='col-span-1'>
+        <div className='col-span-1  h-full py-5 px-5 flex justify-end'>
         <EditLinks/>
         </div>
     </div>
