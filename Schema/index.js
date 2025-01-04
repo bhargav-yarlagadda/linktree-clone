@@ -45,10 +45,6 @@ const userSchema = new mongoose.Schema(
           type: String,
           required: true,
         },
-        icon: {
-          type: String,
-          default: null, // Optional link icon
-        },
         order: {
           type: Number,
           default: 0, // To specify the order of links (optional)

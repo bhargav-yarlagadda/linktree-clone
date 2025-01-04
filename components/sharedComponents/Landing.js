@@ -7,7 +7,7 @@ import { FaInstagram, FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 const Landing = () => {
   return (
 
-    <div className="w-[95vw] h-[100vh] md:h-[80vh] bg-black text-white mx-auto rounded-md animate-fadeInUp flex flex-col justify-center items-center px-6 py-8">
+    <div className=" w-[90vw] md:w-[97vw] h-[100vh] md:h-[80vh] bg-black text-white mx-auto rounded-md animate-fadeInUp flex flex-col justify-center items-center px-6 py-8">
       {/* Flex container to display content and video side by side */}
       <div className="flex flex-col sm:flex-row justify-center items-center w-full gap-8">
         {/* Content Section */}

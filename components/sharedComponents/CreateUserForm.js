@@ -3,7 +3,6 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { cn } from "@/libs/utils";
 import { useRouter } from "next/navigation";
-import { insertNewUser } from "@/utils";
 import { useUser } from "@clerk/nextjs";
 import { motion } from "framer-motion";
 export default function CreateUserForm() {
