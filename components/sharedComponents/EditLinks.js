@@ -38,21 +38,38 @@ const EditLinks = () => {
         if (user && isLoaded && isSignedIn) {
             getUser();
         }
-    }, [user, isLoaded, isSignedIn]);
+    }, []);
 
     const handleDelete = async (linkToDelete) => {
         showPopup("Deleting link...");
-        setLinks((prevLinks) => prevLinks.filter((link) => link !== linkToDelete));
+        
+        // Remove the specific link from the UI without affecting others
+        setLinks((prevLinks) => prevLinks.filter((link) => link.url !== linkToDelete.url));
+        
         try {
-            await fetch(`http://localhost:3000/api/links/${linkToDelete.id}`, {
+            // Send delete request to the server
+            const response = await fetch('http://localhost:3000/api/profile', {
                 method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: user?.primaryEmailAddress?.emailAddress,
+                    url: linkToDelete.url, // Make sure you are passing the correct URL
+                }),
             });
+    
+            if (!response.ok) {
+                throw new Error(`Failed to delete link: ${response.statusText}`);
+            }
+    
             showPopup("Link deleted successfully!");
         } catch (error) {
             console.error("Error deleting link:", error);
             showPopup("Failed to delete link.");
         }
     };
+    
 
     const handleEdit = (linkToEdit) => {
         setTitle(linkToEdit.title);

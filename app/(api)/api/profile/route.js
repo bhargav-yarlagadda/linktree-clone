@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'; // Import NextResponse
 import { updateLinks, updateUserByEmail } from '@/utils';
-
+import { deleteLink } from '@/utils';
 export async function POST(req) {
   try {   
     const { email, username, bio, profilePicture, backgroundImage, links } = await req.json(); // Include links in the request body
@@ -78,5 +78,34 @@ export async function PATCH(req) {
       { message: "An error occurred while updating links" },
       { status: 500 }
     );
+  }
+}
+
+export async function DELETE(req) {
+  const { email, url } = await req.json(); // Assuming the body is correctly formatted
+  
+  if (!email || !url) {
+    return NextResponse.json(
+      { message: "Email and URL are required" },
+      { status: 400 }
+    );
+  }
+
+  try {
+    const res = await deleteLink(email, url); // Ensure this function works properly
+    if (res.success) {
+      return NextResponse.json({
+        message: "Link deleted successfully",
+        status: 200,
+      });
+    } else {
+      throw new Error(res.message);
+    }
+  } catch (error) {
+    return NextResponse.json({
+      message: "Failed to delete link",
+      error: error.message,
+      status: 500,
+    });
   }
 }

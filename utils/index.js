@@ -128,3 +128,39 @@ export async function updateLinks(email, links) {
     return { status: "failure", message: error.message || "An error occurred" };
   }
 }
+
+
+export async function deleteLink(email, url) {
+  try {
+    // Connect to the database
+    await connectToDatabase();
+
+    // Find the user by email
+    const user = await User.findOne({ email });
+
+    // If user not found, throw an error
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    // Filter out the link with the given URL
+    const updatedLinks = user.links.filter(link => link.url !== url);
+
+    // Update the user's links field
+    const updatedUser = await User.findByIdAndUpdate(user._id, { links: updatedLinks }, { new: true });
+
+    // Check if the update was successful
+    if (updatedUser) {
+      return { success: true, message: 'Link deleted successfully' };
+    } else {
+      return { success: false, message: 'Failed to delete link' };
+    }
+  } catch (error) {
+    console.error('Error deleting link:', error);
+    return { success: false, message: error.message };
+  }
+}
+
+  
+  
+  
