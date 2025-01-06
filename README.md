@@ -59,4 +59,4 @@ npm run dev
 
 
 ### ToDo's
-integrate AWS S3 to store and mange user images
+integrate AWS S3 to store and manage user images
