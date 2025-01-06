@@ -26,7 +26,7 @@ const DisplayLinks = ({ user }) => {
           {links.map((link, index) => (
             <motion.li
               key={index}
-              className="bg-gray-800 p-4 rounded-lg hover:bg-cyan-500 transition-all cursor-pointer"
+              className="bg-gray-800 p-4 rounded-lg hover:bg-gray-900 transition-all cursor-pointer"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
             >
