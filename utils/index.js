@@ -164,3 +164,27 @@ export async function deleteLink(email, url) {
   
   
   
+export async function getUserByUsername(username) {
+  try {
+    await connectToDatabase(); // Ensure database connection
+    const user = await User.findOne({ username: username });
+
+    if (!user) {
+      return {
+        status: false,
+        message: "User not found.",
+      };
+    }
+
+    return {
+      status: true,
+      data: user, // Return user object
+    };
+  } catch (error) {
+    console.error("Error in getUserByUsername:", error);
+    return {
+      status: false,
+      message: "Error fetching user from the database.",
+    };
+  }
+}
