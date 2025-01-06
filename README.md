@@ -17,6 +17,16 @@ Connectly is a link tree clone built with Next.js, MongoDB, Motion, and Accentri
 - **Backend**: Node.js, MongoDB
 - **Authentication**: clerk auth and  JWT-based user authentication
 
+## Routes
+- **/** : Landing Page
+- **/profile**: Editing user profile
+- **/profile/new-user**: create a new profile
+- **/sign-in, /sign-up**:  Auth routes
+- **/user/${username}** Public url to display profile
+  ### API end points
+  - api/users
+  - api/profile
+  - api/user
 ## Installation
 
 ### 1. Clone the repository
